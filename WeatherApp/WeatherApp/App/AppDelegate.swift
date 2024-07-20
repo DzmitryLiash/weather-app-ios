@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)
         
+        registerDependencies()
+        
         let appCoordinator = AppCoordinator(window: window)
         self.coordinator = appCoordinator
         appCoordinator.start()
@@ -26,3 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+private func registerDependencies() {
+    DependencyContainer.shared.register(WeatherAPI.self, WeatherAPIService.init)
+}

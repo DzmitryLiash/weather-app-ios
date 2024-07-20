@@ -14,5 +14,7 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
+	<key>BASE_URL</key>
+	<string>https://dataservice.accuweather.com</string>
 </dict>
 </plist>

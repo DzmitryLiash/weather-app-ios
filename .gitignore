@@ -99,3 +99,6 @@ iOSInjectionProject/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+### Accuweather secrets ###
+WeatherApp/WeatherApp/Resources/Accuweather-Info.plist

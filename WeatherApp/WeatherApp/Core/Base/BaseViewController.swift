@@ -33,7 +33,9 @@ class BaseViewController: UIViewController {
     
     func addSubviews() {}
     
-    func setupConstraints() {}
+    func setupSubviews() {
+        view.backgroundColor = UIColor(resource: .moderateBlue)
+    }
     
-    func setupSubviews() {}
+    func setupConstraints() {}
 }

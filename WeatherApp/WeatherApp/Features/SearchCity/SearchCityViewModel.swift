@@ -7,8 +7,8 @@
 
 import Foundation
 
-class SearchListViewModel {
+class SearchCityViewModel {
     
-    weak var coordinator: SearchListCoordinatorProtocol?
+    weak var coordinator: SearchCityCoordinatorProtocol?
     
 }

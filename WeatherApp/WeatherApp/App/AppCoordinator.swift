@@ -11,11 +11,12 @@ protocol AppCoordinatorProtocol {
     func start()
 }
 
-protocol SearchListCoordinatorProtocol: AnyObject {
+protocol SearchCityCoordinatorProtocol: AnyObject {
     func showDetails()
 }
 
 final class AppCoordinator: AppCoordinatorProtocol {
+    
     private let window: UIWindow
     private var navigationController: UINavigationController?
     
@@ -24,12 +25,11 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func start() {
-        let viewModel = SearchListViewModel()
+        let viewModel = SearchCityViewModel()
         viewModel.coordinator = self
         
-        let stationsListViewController = SearchListViewController(viewModel: viewModel)
-        let navigationController = UINavigationController(rootViewController: stationsListViewController)
-        
+        let searchCityViewController = SearchCityViewController(viewModel: viewModel)
+        let navigationController = UINavigationController(rootViewController: searchCityViewController)
         self.navigationController = navigationController
         
         window.rootViewController = navigationController
@@ -37,11 +37,10 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
 }
 
-extension AppCoordinator: SearchListCoordinatorProtocol {
+extension AppCoordinator: SearchCityCoordinatorProtocol {
     func showDetails() {
         let detailsViewModel = WeatherDetailsViewModel()
         let detailsViewController = WeatherDetailsViewController(viewModel: detailsViewModel)
-        
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

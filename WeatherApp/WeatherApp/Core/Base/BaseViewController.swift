@@ -29,6 +29,7 @@ class BaseViewController: UIViewController {
         addSubviews()
         setupConstraints()
         setupSubviews()
+        dismissKeyboard()
     }
     
     func addSubviews() {}

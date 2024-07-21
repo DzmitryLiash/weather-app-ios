@@ -12,7 +12,7 @@ protocol AppCoordinatorProtocol {
 }
 
 protocol SearchCityCoordinatorProtocol: AnyObject {
-    func showDetails()
+    func showWeatherDetails(with city: City)
 }
 
 final class AppCoordinator: AppCoordinatorProtocol {
@@ -38,9 +38,10 @@ final class AppCoordinator: AppCoordinatorProtocol {
 }
 
 extension AppCoordinator: SearchCityCoordinatorProtocol {
-    func showDetails() {
-        let detailsViewModel = WeatherDetailsViewModel()
+    func showWeatherDetails(with city: City) {
+        let detailsViewModel = WeatherDetailsViewModel(city: city)
         let detailsViewController = WeatherDetailsViewController(viewModel: detailsViewModel)
+        
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

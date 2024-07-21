@@ -18,5 +18,8 @@ class WeatherDetailsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem?.tintColor = .white
+
     }
 }

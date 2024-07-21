@@ -7,4 +7,10 @@
 
 final class WeatherDetailsViewModel {
     
+    private let city: City
+    
+    init(city: City) {
+        self.city = city
+    }
+    
 }

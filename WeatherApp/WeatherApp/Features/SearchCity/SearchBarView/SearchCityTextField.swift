@@ -62,6 +62,8 @@ class SearchCityTextField: UITextField {
             ]
         )
         backgroundColor = UIColor(resource: .moderateBlue)
+        
+        
     }
     
     private func setupLeftView() {

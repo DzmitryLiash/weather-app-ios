@@ -7,7 +7,7 @@
 
 struct Wind {
     let direction: DirectionDto
-    let speed: TemperatureDto
+    let speed: MeasureDto
 }
 
 extension Wind {

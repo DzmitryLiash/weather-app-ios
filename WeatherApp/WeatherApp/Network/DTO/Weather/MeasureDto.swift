@@ -5,7 +5,7 @@
 //  Created by Dzmitry Liashchou on 20/07/2024.
 //
 
-struct TemperatureDto: Codable {
+struct MeasureDto: Codable {
     let metric: UnitDto
     let imperial: UnitDto
 

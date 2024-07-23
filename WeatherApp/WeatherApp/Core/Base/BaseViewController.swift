@@ -41,4 +41,15 @@ class BaseViewController: UIViewController {
     }
     
     func setupConstraints() {}
+    
+    func showErrorAlert(title: String, message: String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true)
+    }
 }

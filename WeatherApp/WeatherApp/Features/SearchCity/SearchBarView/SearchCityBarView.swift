@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol SearchCityBarViewDelegate: AnyObject {
     func perfomSearch(with query: String)
@@ -31,6 +32,9 @@ final class SearchCityBarView: BaseView {
     private let searchTitleLabel = UILabel()
     private let borderView = UIView()
     private let stackView = UIStackView()
+    
+    private let textChangeSubject = PassthroughSubject<String, Never>()
+    private var cancellables = Set<AnyCancellable>()
     
     func setup(with title: String) {
         searchTitleLabel.text = title
@@ -66,6 +70,8 @@ final class SearchCityBarView: BaseView {
         
         borderView.translatesAutoresizingMaskIntoConstraints = false
         borderView.backgroundColor = Constants.borderViewBackgroundColor
+        
+        bindTextField()
     }
     
     override func setupConstraints() {
@@ -95,6 +101,19 @@ final class SearchCityBarView: BaseView {
             borderView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
+    
+    private func bindTextField() {
+        textChangeSubject
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .sink { [weak self] text in
+                if !SearchCityTextFieldValidator.isValidInput(text) || text.contains("  ") {
+                    return
+                }
+                self?.delegate?.perfomSearch(with: text)
+            }
+            .store(in: &cancellables)
+    }
 }
 
 extension SearchCityBarView: UITextFieldDelegate {
@@ -110,17 +129,20 @@ extension SearchCityBarView: UITextFieldDelegate {
         
         let updatedText = currentText.replacingCharacters(in: textRange, with: string)
         
-        if updatedText.contains("  ") {
+        if updatedText.contains("  ") || !SearchCityTextFieldValidator.isValidInput(updatedText) {
             return false
         }
         
-        return SearchCityTextFieldValidator.isValidInput(updatedText)
+        textChangeSubject.send(updatedText)
+        
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        let query = textField.text ?? ""
-        delegate?.perfomSearch(with: query)
+        if let query = textField.text, !query.isEmpty {
+            delegate?.perfomSearch(with: query)
+        }
         
         return true
     }

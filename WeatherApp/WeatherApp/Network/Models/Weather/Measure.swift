@@ -5,13 +5,13 @@
 //  Created by Dzmitry Liashchou on 20/07/2024.
 //
 
-struct Temperature {
+struct Measure {
     let metric: Unit
     let imperial: Unit
 }
 
-extension Temperature {
-    init(dto: TemperatureDto) {
+extension Measure {
+    init(dto: MeasureDto) {
         self.metric = Unit(dto: dto.metric)
         self.imperial = Unit(dto: dto.imperial)
     }

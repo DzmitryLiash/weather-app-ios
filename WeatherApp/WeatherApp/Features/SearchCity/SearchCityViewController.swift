@@ -13,11 +13,9 @@ final class SearchCityViewController: BaseViewController {
         static let searchTextFieldViewLeading: CGFloat = 20
         static let searchTextFieldViewTrailing: CGFloat = -20
         static let searchTextFieldViewHeight: CGFloat = 48
-        
         static let tableViewContentInset: UIEdgeInsets = .init(top: 16, left: 0, bottom: 0, right: 0)
         static let tableViewHeight: CGFloat = 92
     }
-    
     
     private typealias DataSource = UITableViewDiffableDataSource<Section, City>
     private typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, City>
@@ -121,7 +119,7 @@ final class SearchCityViewController: BaseViewController {
             snapshot.appendItems(viewModel.cities)
         }
         
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
@@ -146,9 +144,12 @@ extension SearchCityViewController: UITableViewDelegate {
 }
 
 extension SearchCityViewController: SearchCityViewModelDelegate {
+    func didOccurError(with error: AppError) {
+        let errorInfo = error.errorInfo()
+        showErrorAlert(title: errorInfo.title, message: errorInfo.description)
+    }
+    
     func didFetchCities() {
         applyDataSourceSnapshot()
     }
-    
-    func didOccurError(with error: any Error) { }
 }

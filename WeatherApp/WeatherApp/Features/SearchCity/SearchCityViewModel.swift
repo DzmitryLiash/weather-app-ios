@@ -10,7 +10,7 @@ import Combine
 
 protocol SearchCityViewModelDelegate: AnyObject {
     func didFetchCities()
-    func didOccurError(with error: Error)
+    func didOccurError(with error: AppError)
 }
 
 final class SearchCityViewModel {
@@ -49,9 +49,17 @@ final class SearchCityViewModel {
                 case .success:
                     self?.delegate?.didFetchCities()
                 case let .failure(error):                    
-                    self?.delegate?.didOccurError(with: error)
+                    self?.handleError(error)
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    private func handleError(_ error: Error) {
+        if let appError = error as? AppError {
+            delegate?.didOccurError(with: appError)
+        } else {
+            delegate?.didOccurError(with: AppError.unknown(error.localizedDescription))
+        }
     }
 }

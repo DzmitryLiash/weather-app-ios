@@ -7,7 +7,7 @@
 
 struct WindDto: Codable {
     let direction: DirectionDto
-    let speed: TemperatureDto
+    let speed: MeasureDto
     
     enum CodingKeys: String, CodingKey {
         case direction = "Direction"

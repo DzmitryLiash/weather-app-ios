@@ -41,21 +41,34 @@ extension APIClient {
         
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .tryMap { output in
-                guard let response = output.response as? HTTPURLResponse else {
-                    throw URLError(.badServerResponse)
-                }
-                
-                guard (200...299).contains(response.statusCode) else {
-                    if response.statusCode == 404 {
-                        throw URLError(.fileDoesNotExist)
-                    } else {
-                        throw URLError(.badServerResponse)
+                if let response = output.response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
+                    do {
+                        let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: output.data)
+                        if let apiError = errorResponse.error {
+                            throw AppError.apiError(apiError)
+                        } else {
+                            throw AppError.unknown("Unknown error occurred.")
+                        }
+                    } catch {
+                        throw AppError.unknown("Failed to decode error response")
                     }
                 }
-                
                 return output.data
             }
             .decode(type: T.ResponseType.self, decoder: JSONDecoder())
+            .mapError { error in
+                return self.mapErrorToAppError(error)
+            }
             .eraseToAnyPublisher()
+    }
+    
+    private func mapErrorToAppError(_ error: Error) -> AppError {
+        if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
+            return .noInternetConnection
+        } else if let appError = error as? AppError {
+            return appError
+        } else {
+            return .unknown(error.localizedDescription)
+        }
     }
 }

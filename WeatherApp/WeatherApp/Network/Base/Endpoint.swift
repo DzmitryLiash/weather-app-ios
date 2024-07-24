@@ -19,11 +19,7 @@ protocol Endpoint {
 
 extension Endpoint {
     var baseURL: URL {
-        guard let url = AccuweatherConfigManager.baseURL else {
-            fatalError("baseURL could not be configured.")
-        }
-        
-        return url
+        Config.baseURL
     }
     
     var method: HTTPRequestMethod {
@@ -35,6 +31,6 @@ extension Endpoint {
     }
     
     var defaultParameters: [String: Any] {
-        ["apikey": AccuweatherConfigManager.apiKey, "details": true]
+        ["apikey": Config.apiKey, "details": true]
     }
 }

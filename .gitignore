@@ -101,4 +101,4 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 ### Accuweather secrets ###
-WeatherApp/WeatherApp/Resources/Accuweather-Info.plist
+WeatherApp/WeatherApp/Resources/Config.xcconfig

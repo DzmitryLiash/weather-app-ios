@@ -104,7 +104,7 @@ final class SearchCityBarView: BaseView {
     
     private func bindTextField() {
         textChangeSubject
-            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .debounce(for: .milliseconds(150), scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] text in
                 if !SearchCityTextFieldValidator.isValidInput(text) || text.contains("  ") {

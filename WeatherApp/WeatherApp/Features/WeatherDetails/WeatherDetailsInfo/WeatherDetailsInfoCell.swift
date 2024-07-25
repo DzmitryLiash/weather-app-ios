@@ -51,21 +51,21 @@ final class WeatherDetailsInfoCell: UITableViewCell {
     
     private func setupSubviews() {
         selectionStyle = .none
-        contentView.backgroundColor = UIColor(resource: .moderateBlue)
+        contentView.backgroundColor = .white
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         bottomBorderView.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorderView.backgroundColor = .white
+        bottomBorderView.backgroundColor = .black
         
         measureNameLabel.translatesAutoresizingMaskIntoConstraints = false
         measureNameLabel.font = Constants.measureNameLabelFont
-        measureNameLabel.textColor = .white
+        measureNameLabel.textColor = .black
         
         measureLabel.translatesAutoresizingMaskIntoConstraints = false
         measureLabel.font = Constants.measureLabelFont
         measureLabel.textAlignment = .right
-        measureLabel.textColor = .white
+        measureLabel.textColor = .black
     }
     
     private func setupConstraints() {

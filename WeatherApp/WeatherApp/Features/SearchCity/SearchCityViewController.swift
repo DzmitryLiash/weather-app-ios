@@ -58,7 +58,7 @@ final class SearchCityViewController: BaseViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.contentInset = Constants.tableViewContentInset
-        tableView.backgroundColor = UIColor(resource: .moderateBlue)
+        tableView.backgroundColor = .white
         tableView.register(
             SearchCityCell.self,
             forCellReuseIdentifier: SearchCityCell.reuseIdentifier

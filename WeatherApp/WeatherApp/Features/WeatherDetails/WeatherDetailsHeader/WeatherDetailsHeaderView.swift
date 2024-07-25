@@ -54,7 +54,7 @@ final class WeatherDetailsHeaderView: BaseView {
         
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         temperatureLabel.font = Constants.temperatureLabelFont
-        temperatureLabel.textColor = .white
+        temperatureLabel.textColor = .black
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -63,7 +63,7 @@ final class WeatherDetailsHeaderView: BaseView {
         
         placeLabel.translatesAutoresizingMaskIntoConstraints = false
         placeLabel.font = Constants.placeLabelFont
-        placeLabel.textColor = .white
+        placeLabel.textColor = .black
         
         weatherStackView.translatesAutoresizingMaskIntoConstraints = false
         weatherStackView.alignment = .center
@@ -74,7 +74,7 @@ final class WeatherDetailsHeaderView: BaseView {
         
         weatherText.translatesAutoresizingMaskIntoConstraints = false
         weatherText.font = Constants.weatherTextLabelFont
-        weatherText.textColor = .white
+        weatherText.textColor = .black
     }
     
     override func setupConstraints() {

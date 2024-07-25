@@ -18,7 +18,7 @@ final class SearchCityBarView: BaseView {
     
     private enum Constants {
         static let stackViewSpacing: CGFloat = 16
-        static let borderViewBackgroundColor: UIColor = .white.withAlphaComponent(0.6)
+        static let borderViewBackgroundColor: UIColor = .black.withAlphaComponent(0.6)
         static let searchTitleLabelFont: UIFont = UIFont(name: AppFont.interBold, size: 16) ?? .boldSystemFont(ofSize: 16)
         static let borderViewHeight: CGFloat = 0.5
         static let searchTextFieldViewLeading: CGFloat = 20
@@ -65,7 +65,7 @@ final class SearchCityBarView: BaseView {
         searchTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         searchTitleLabel.font = Constants.searchTitleLabelFont
         searchTitleLabel.textAlignment = .left
-        searchTitleLabel.textColor = .white
+        searchTitleLabel.textColor = .black
         searchTitleLabel.isHidden = true
         
         borderView.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +107,9 @@ final class SearchCityBarView: BaseView {
             .debounce(for: .milliseconds(150), scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] text in
-                if !SearchCityTextFieldValidator.isValidInput(text) || text.contains("  ") {
+                if !SearchCityTextFieldValidator.isValidInput(text) ||
+                    text.contains("  ") || 
+                    text == " " {
                     return
                 }
                 self?.delegate?.perfomSearch(with: text)

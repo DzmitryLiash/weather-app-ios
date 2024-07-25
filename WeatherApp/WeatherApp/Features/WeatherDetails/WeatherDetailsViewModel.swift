@@ -18,7 +18,6 @@ final class WeatherDetailsViewModel {
     weak var delegate: WeatherDetailsViewModelDelegate?
     
     @Injected var weatherAPI: WeatherAPI
-    @Injected var weatherIconManager: WeatherIconProviding
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -43,7 +42,7 @@ final class WeatherDetailsViewModel {
         let temperatureState = TemperatureState(temperature: weatherDetails.temperature.metric.value)
         let placeText = "\(city.country), \(city.localizedName)"
         let weatherText = weatherDetails.weatherText
-        let weatherIcon = weatherIconManager.getWeatherIcon(for: weatherDetails.weatherIcon)
+        let weatherIcon = WeatherIconProvider.getIcon(for: weatherDetails.weatherIcon)
         
         return WeatherDetailsHeaderModel(
             temperatureText: temperatureText,

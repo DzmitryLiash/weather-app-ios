@@ -30,6 +30,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 private func registerDependencies() {
     DependencyContainer.shared.register(WeatherAPI.self, WeatherAPIService.init)
-    DependencyContainer.shared.register(WeatherIconProviding.self, WeatherIconManager.init)
     DependencyContainer.shared.register(SearchHistoryCache.self, SearchHistoryCache.init)
 }

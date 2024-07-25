@@ -36,6 +36,13 @@ final class SearchCityViewController: BaseViewController {
         super.init()
         self.viewModel.delegate = self
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel.onViewDidLoad()
+        applyDataSourceSnapshot()
+    }
 
     override func addSubviews() {
         super.addSubviews()
@@ -82,7 +89,27 @@ final class SearchCityViewController: BaseViewController {
     
     private func createDataSource() -> DataSource {
         DataSource(tableView: tableView) { tableView, indexPath, item in
-            if self.viewModel.cities.isEmpty {
+            switch self.viewModel.state {
+            case .searchHistory, .searchResults:
+                guard let cell: SearchCityCell = tableView.dequeueReusableCell(
+                    withIdentifier: SearchCityCell.reuseIdentifier,
+                    for: indexPath
+                ) as? SearchCityCell else {
+                    return UITableViewCell()
+                }
+                
+                if self.viewModel.state == .searchHistory {
+                    cell.setup(with: item, isSearchHistory: true)
+                    cell.onDeleteTapped = { [weak self] in
+                        self?.viewModel.removeCityFromHistory(item)
+                    }
+                } else {
+                    cell.setup(with: item)
+                }
+                
+                return cell
+                
+            case .noResults:
                 guard let cell: SearchCityEmptyResultCell = tableView.dequeueReusableCell(
                     withIdentifier: SearchCityEmptyResultCell.reuseIdentifier,
                     for: indexPath
@@ -92,33 +119,18 @@ final class SearchCityViewController: BaseViewController {
                 
                 return cell
                 
-            } else {
-                guard let cell: SearchCityCell = tableView.dequeueReusableCell(
-                    withIdentifier: SearchCityCell.reuseIdentifier,
-                    for: indexPath
-                ) as? SearchCityCell else {
-                    return UITableViewCell()
-                }
-                
-                cell.setup(with: item)
-
-                return cell
+            case .empty: 
+                return UITableViewCell()
             }
         }
     }
     
     private func applyDataSourceSnapshot() {
+        searchBarView.setup(with: viewModel.state.title)
+
         var snapshot = DataSourceSnapshot()
         snapshot.appendSections([.main])
-        
-        if viewModel.cities.isEmpty {
-            searchBarView.setup(with: "")
-            snapshot.appendItems([viewModel.emptyResult])
-        } else {
-            searchBarView.setup(with: "Search results")
-            snapshot.appendItems(viewModel.cities)
-        }
-        
+        snapshot.appendItems(viewModel.items)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
@@ -149,7 +161,7 @@ extension SearchCityViewController: SearchCityViewModelDelegate {
         showErrorAlert(title: errorInfo.title, message: errorInfo.description)
     }
     
-    func didFetchCities() {
+    func didUpdateState() {
         applyDataSourceSnapshot()
     }
 }

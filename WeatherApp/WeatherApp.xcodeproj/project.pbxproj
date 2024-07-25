@@ -60,6 +60,8 @@
 		97545C3C2C50632B00055EEE /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97545C372C50632B00055EEE /* Inter-Medium.ttf */; };
 		97545C3D2C50632B00055EEE /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97545C382C50632B00055EEE /* Inter-Regular.ttf */; };
 		97BCFF6D2C5197D3007C018E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 97BCFF6C2C5197D3007C018E /* Config.xcconfig */; };
+		97D47D192C52C6D400245FED /* SearchHistoryCacheDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D47D182C52C6D400245FED /* SearchHistoryCacheDto.swift */; };
+		97D47D1C2C52C71B00245FED /* SearchHistoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */; };
 		97F3E3C12C4B0FB400311743 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3E3C02C4B0FB400311743 /* BaseViewController.swift */; };
 		97F3E3C32C4B104B00311743 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3E3C22C4B104B00311743 /* BaseView.swift */; };
 /* End PBXBuildFile section */
@@ -120,6 +122,8 @@
 		97545C372C50632B00055EEE /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		97545C382C50632B00055EEE /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		97BCFF6C2C5197D3007C018E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		97D47D182C52C6D400245FED /* SearchHistoryCacheDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryCacheDto.swift; sourceTree = "<group>"; };
+		97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryCache.swift; sourceTree = "<group>"; };
 		97F3E3C02C4B0FB400311743 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		97F3E3C22C4B104B00311743 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +162,7 @@
 				9701FA772C4B0CA600BEA9E8 /* Features */,
 				97269E302C4C1F6300D5540B /* Network */,
 				97269E612C4C613D00D5540B /* Services */,
+				97D47D1E2C52C95600245FED /* Stores */,
 				97F3E3BF2C4B0F6200311743 /* Core */,
 				9701FA752C4B0A9400BEA9E8 /* Resources */,
 			);
@@ -387,6 +392,31 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		97D47D1A2C52C6E200245FED /* SearchHistoryCache */ = {
+			isa = PBXGroup;
+			children = (
+				97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */,
+				97D47D1D2C52C73C00245FED /* DTO */,
+			);
+			path = SearchHistoryCache;
+			sourceTree = "<group>";
+		};
+		97D47D1D2C52C73C00245FED /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				97D47D182C52C6D400245FED /* SearchHistoryCacheDto.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		97D47D1E2C52C95600245FED /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				97D47D1A2C52C6E200245FED /* SearchHistoryCache */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
 		97F3E3BF2C4B0F6200311743 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,7 +512,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				97269E3D2C4C20A500D5540B /* CityDto.swift in Sources */,
+				97D47D192C52C6D400245FED /* SearchHistoryCacheDto.swift in Sources */,
 				97269E652C4C6A1A00D5540B /* Bundle+Extension.swift in Sources */,
+				97D47D1C2C52C71B00245FED /* SearchHistoryCache.swift in Sources */,
 				97269E582C4C5EEB00D5540B /* WeatherDetails.swift in Sources */,
 				97545C302C50589800055EEE /* AppError.swift in Sources */,
 				97269E692C4C742700D5540B /* Config.swift in Sources */,

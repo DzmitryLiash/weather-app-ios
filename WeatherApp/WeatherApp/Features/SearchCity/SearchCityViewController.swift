@@ -37,11 +37,16 @@ final class SearchCityViewController: BaseViewController {
         self.viewModel.delegate = self
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        applyDataSourceSnapshot()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel.onViewDidLoad()
-        applyDataSourceSnapshot()
     }
 
     override func addSubviews() {

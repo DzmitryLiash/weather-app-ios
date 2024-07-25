@@ -62,6 +62,8 @@
 		97BCFF6D2C5197D3007C018E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 97BCFF6C2C5197D3007C018E /* Config.xcconfig */; };
 		97D47D192C52C6D400245FED /* SearchHistoryCacheDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D47D182C52C6D400245FED /* SearchHistoryCacheDto.swift */; };
 		97D47D1C2C52C71B00245FED /* SearchHistoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */; };
+		97D47D202C52CD5B00245FED /* APIErrorResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D47D1F2C52CD5B00245FED /* APIErrorResponseCode.swift */; };
+		97D47D222C52CD7400245FED /* APIErrorResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D47D212C52CD7400245FED /* APIErrorResponseDto.swift */; };
 		97F3E3C12C4B0FB400311743 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3E3C02C4B0FB400311743 /* BaseViewController.swift */; };
 		97F3E3C32C4B104B00311743 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3E3C22C4B104B00311743 /* BaseView.swift */; };
 /* End PBXBuildFile section */
@@ -124,6 +126,8 @@
 		97BCFF6C2C5197D3007C018E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		97D47D182C52C6D400245FED /* SearchHistoryCacheDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryCacheDto.swift; sourceTree = "<group>"; };
 		97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryCache.swift; sourceTree = "<group>"; };
+		97D47D1F2C52CD5B00245FED /* APIErrorResponseCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorResponseCode.swift; sourceTree = "<group>"; };
+		97D47D212C52CD7400245FED /* APIErrorResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorResponseDto.swift; sourceTree = "<group>"; };
 		97F3E3C02C4B0FB400311743 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		97F3E3C22C4B104B00311743 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,6 +282,8 @@
 		97269E3B2C4C209500D5540B /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				97D47D232C52CE2000245FED /* APIErrorResponse */,
+				97D47D242C52CE3000245FED /* SearchHistoryCache */,
 				97269E482C4C5DF300D5540B /* City */,
 				97269E492C4C5DFB00D5540B /* Weather */,
 			);
@@ -396,17 +402,8 @@
 			isa = PBXGroup;
 			children = (
 				97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */,
-				97D47D1D2C52C73C00245FED /* DTO */,
 			);
 			path = SearchHistoryCache;
-			sourceTree = "<group>";
-		};
-		97D47D1D2C52C73C00245FED /* DTO */ = {
-			isa = PBXGroup;
-			children = (
-				97D47D182C52C6D400245FED /* SearchHistoryCacheDto.swift */,
-			);
-			path = DTO;
 			sourceTree = "<group>";
 		};
 		97D47D1E2C52C95600245FED /* Stores */ = {
@@ -415,6 +412,23 @@
 				97D47D1A2C52C6E200245FED /* SearchHistoryCache */,
 			);
 			path = Stores;
+			sourceTree = "<group>";
+		};
+		97D47D232C52CE2000245FED /* APIErrorResponse */ = {
+			isa = PBXGroup;
+			children = (
+				97D47D1F2C52CD5B00245FED /* APIErrorResponseCode.swift */,
+				97D47D212C52CD7400245FED /* APIErrorResponseDto.swift */,
+			);
+			path = APIErrorResponse;
+			sourceTree = "<group>";
+		};
+		97D47D242C52CE3000245FED /* SearchHistoryCache */ = {
+			isa = PBXGroup;
+			children = (
+				97D47D182C52C6D400245FED /* SearchHistoryCacheDto.swift */,
+			);
+			path = SearchHistoryCache;
 			sourceTree = "<group>";
 		};
 		97F3E3BF2C4B0F6200311743 /* Core */ = {
@@ -521,6 +535,7 @@
 				97269E4B2C4C5E1000D5540B /* WindDto.swift in Sources */,
 				97269E5C2C4C5F3600D5540B /* Measure.swift in Sources */,
 				97545C2B2C50503E00055EEE /* WeatherDetailsInfoModel.swift in Sources */,
+				97D47D222C52CD7400245FED /* APIErrorResponseDto.swift in Sources */,
 				97269E1C2C4B18DD00D5540B /* AppCoordinator.swift in Sources */,
 				97545C272C5041F300055EEE /* WeatherDetailsInfoView.swift in Sources */,
 				97269E5E2C4C5F8000D5540B /* Unit.swift in Sources */,
@@ -555,6 +570,7 @@
 				97545C322C5058E000055EEE /* ErrorResponse.swift in Sources */,
 				97269E372C4C1FE600D5540B /* HTTPRequestMethod.swift in Sources */,
 				97545C232C50301200055EEE /* WeatherIconManager.swift in Sources */,
+				97D47D202C52CD5B00245FED /* APIErrorResponseCode.swift in Sources */,
 				97F3E3C12C4B0FB400311743 /* BaseViewController.swift in Sources */,
 				97269E2C2C4C1D9800D5540B /* SearchCityTextFieldValidator.swift in Sources */,
 				9753B3C52C4D012B00C8F6AE /* SearchCityEmptyResultCell.swift in Sources */,

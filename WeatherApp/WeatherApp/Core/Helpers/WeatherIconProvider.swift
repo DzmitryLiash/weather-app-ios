@@ -8,7 +8,7 @@
 import UIKit
 
 struct WeatherIconProvider {
-    static func getWeatherIcon(for number: Int) -> UIImage? {
+    static func getIcon(for number: Int) -> UIImage? {
         let iconName = "\(number)"
         return UIImage(named: iconName)
     }

@@ -47,7 +47,7 @@
 		9753B3C52C4D012B00C8F6AE /* SearchCityEmptyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B3C42C4D012B00C8F6AE /* SearchCityEmptyResultCell.swift */; };
 		9753B3C72C4D36C100C8F6AE /* SearchCityBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9753B3C62C4D36C100C8F6AE /* SearchCityBarView.swift */; };
 		97545C212C50270000055EEE /* WeatherDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97545C202C50270000055EEE /* WeatherDetailsHeaderView.swift */; };
-		97545C232C50301200055EEE /* WeatherIconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97545C222C50301200055EEE /* WeatherIconManager.swift */; };
+		97545C232C50301200055EEE /* WeatherIconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97545C222C50301200055EEE /* WeatherIconProvider.swift */; };
 		97545C252C50368B00055EEE /* WeatherDetailsHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97545C242C50368B00055EEE /* WeatherDetailsHeaderModel.swift */; };
 		97545C272C5041F300055EEE /* WeatherDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97545C262C5041F300055EEE /* WeatherDetailsInfoView.swift */; };
 		97545C292C50441100055EEE /* WeatherDetailsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97545C282C50441100055EEE /* WeatherDetailsInfoCell.swift */; };
@@ -111,7 +111,7 @@
 		9753B3C42C4D012B00C8F6AE /* SearchCityEmptyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityEmptyResultCell.swift; sourceTree = "<group>"; };
 		9753B3C62C4D36C100C8F6AE /* SearchCityBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityBarView.swift; sourceTree = "<group>"; };
 		97545C202C50270000055EEE /* WeatherDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsHeaderView.swift; sourceTree = "<group>"; };
-		97545C222C50301200055EEE /* WeatherIconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconManager.swift; sourceTree = "<group>"; };
+		97545C222C50301200055EEE /* WeatherIconProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconProvider.swift; sourceTree = "<group>"; };
 		97545C242C50368B00055EEE /* WeatherDetailsHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsHeaderModel.swift; sourceTree = "<group>"; };
 		97545C262C5041F300055EEE /* WeatherDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsInfoView.swift; sourceTree = "<group>"; };
 		97545C282C50441100055EEE /* WeatherDetailsInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsInfoCell.swift; sourceTree = "<group>"; };
@@ -244,6 +244,7 @@
 			children = (
 				97269E2B2C4C1D9800D5540B /* SearchCityTextFieldValidator.swift */,
 				97269E682C4C742700D5540B /* Config.swift */,
+				97545C222C50301200055EEE /* WeatherIconProvider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -344,7 +345,6 @@
 			isa = PBXGroup;
 			children = (
 				97269E422C4C3F0300D5540B /* WeatherAPIService.swift */,
-				97545C222C50301200055EEE /* WeatherIconManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -398,18 +398,10 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		97D47D1A2C52C6E200245FED /* SearchHistoryCache */ = {
-			isa = PBXGroup;
-			children = (
-				97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */,
-			);
-			path = SearchHistoryCache;
-			sourceTree = "<group>";
-		};
 		97D47D1E2C52C95600245FED /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				97D47D1A2C52C6E200245FED /* SearchHistoryCache */,
+				97D47D1B2C52C71B00245FED /* SearchHistoryCache.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -569,7 +561,7 @@
 				9701FA462C4B09E500BEA9E8 /* AppDelegate.swift in Sources */,
 				97545C322C5058E000055EEE /* ErrorResponse.swift in Sources */,
 				97269E372C4C1FE600D5540B /* HTTPRequestMethod.swift in Sources */,
-				97545C232C50301200055EEE /* WeatherIconManager.swift in Sources */,
+				97545C232C50301200055EEE /* WeatherIconProvider.swift in Sources */,
 				97D47D202C52CD5B00245FED /* APIErrorResponseCode.swift in Sources */,
 				97F3E3C12C4B0FB400311743 /* BaseViewController.swift in Sources */,
 				97269E2C2C4C1D9800D5540B /* SearchCityTextFieldValidator.swift in Sources */,

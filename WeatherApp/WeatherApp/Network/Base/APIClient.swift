@@ -9,11 +9,11 @@ import Foundation
 import Combine
 
 protocol APIClient {
-    func fetch<T: Endpoint>(endpoint: T) -> AnyPublisher<T.ResponseType, Error>
+    func fetch<T: Endpoint>(endpoint: T) -> AnyPublisher<T.ResponseType, AppError>
 }
 
 extension APIClient {
-    func fetch<T: Endpoint>(endpoint: T) -> AnyPublisher<T.ResponseType, Error> {
+    func fetch<T: Endpoint>(endpoint: T) -> AnyPublisher<T.ResponseType, AppError> {
         var urlComponents = URLComponents(
             url: endpoint.baseURL.appendingPathComponent(endpoint.path),
             resolvingAgainstBaseURL: false
@@ -26,7 +26,7 @@ extension APIClient {
         }
         
         guard let url = urlComponents?.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+            return Fail(error: AppError.apiError("Bad URL")).eraseToAnyPublisher()
         }
         
         var urlRequest = URLRequest(url: url)
@@ -41,23 +41,23 @@ extension APIClient {
         
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .tryMap { output in
-                if let response = output.response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
-                    do {
-                        let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: output.data)
-                        if let apiError = errorResponse.error {
-                            throw AppError.apiError(apiError)
-                        } else {
-                            throw AppError.unknown("Unknown error occurred.")
-                        }
-                    } catch {
+                guard let response = output.response as? HTTPURLResponse else {
+                    throw AppError.unknown("Invalid response from server")
+                }
+                
+                guard (200...299).contains(response.statusCode) else {
+                    if let apiErrorResponse = try? JSONDecoder().decode(APIErrorResponseDto.self, from: output.data) {
+                        throw AppError(apiErrorResponse: apiErrorResponse)
+                    } else {
                         throw AppError.unknown("Failed to decode error response")
                     }
                 }
+                
                 return output.data
             }
             .decode(type: T.ResponseType.self, decoder: JSONDecoder())
             .mapError { error in
-                return self.mapErrorToAppError(error)
+                mapErrorToAppError(error)
             }
             .eraseToAnyPublisher()
     }

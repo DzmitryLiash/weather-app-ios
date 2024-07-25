@@ -8,12 +8,12 @@
 import Combine
 
 protocol WeatherAPI: APIClient {
-    func fetchCities(with query: String) -> AnyPublisher<[City], Error>
-    func fetchCityWeather(with locationKey: String) -> AnyPublisher<[WeatherDetails], Error>
+    func fetchCities(with query: String) -> AnyPublisher<[City], AppError>
+    func fetchCityWeather(with locationKey: String) -> AnyPublisher<[WeatherDetails], AppError>
 }
 
 struct WeatherAPIService: WeatherAPI {
-    func fetchCities(with query: String) -> AnyPublisher<[City], Error> {
+    func fetchCities(with query: String) -> AnyPublisher<[City], AppError> {
         let endpoint = CitiesSearchEndpoint(query: query)
         
         return fetch(endpoint: endpoint)
@@ -21,7 +21,7 @@ struct WeatherAPIService: WeatherAPI {
             .eraseToAnyPublisher()
     }
     
-    func fetchCityWeather(with locationKey: String) -> AnyPublisher<[WeatherDetails], Error> {
+    func fetchCityWeather(with locationKey: String) -> AnyPublisher<[WeatherDetails], AppError> {
         let endpoint = WeatherDetailsEndpoint(locationKey: locationKey)
         
         return fetch(endpoint: endpoint)

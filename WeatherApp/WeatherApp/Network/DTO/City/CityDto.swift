@@ -22,3 +22,13 @@ struct CityDto: Codable {
         case administrativeArea = "AdministrativeArea"
     }
 }
+
+extension CityDto {
+    init(city: City) {
+        self.key = city.key
+        self.localizedName = city.localizedName
+        self.region = LocalizedNameDto(localizedName: city.region)
+        self.country = LocalizedNameDto(localizedName: city.country)
+        self.administrativeArea = LocalizedNameDto(localizedName: city.administrativeArea)
+    }
+}

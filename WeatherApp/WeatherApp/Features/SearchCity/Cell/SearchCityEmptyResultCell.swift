@@ -39,13 +39,13 @@ final class SearchCityEmptyResultCell: UITableViewCell {
     
     private func setupSubviews() {
         selectionStyle = .none
-        contentView.backgroundColor = UIColor(resource: .moderateBlue)
+        contentView.backgroundColor = .white
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = Constants.titleLabelFont
-        titleLabel.textColor = .white
+        titleLabel.textColor = .black
         titleLabel.text = Constants.titleLabelText
         titleLabel.numberOfLines = Constants.titleLabelNumberOfLines
     }

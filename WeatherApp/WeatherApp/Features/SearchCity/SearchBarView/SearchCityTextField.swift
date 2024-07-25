@@ -13,7 +13,7 @@ class SearchCityTextField: UITextField {
         static let cornerRadius: CGFloat = 8
         static let textInputFont: UIFont = UIFont(name: AppFont.interRegular, size: 16) ?? .systemFont(ofSize: 16)
         static let placeholderString: String = "Search the city"
-        static let placeholderForegroundColor: UIColor = UIColor.white.withAlphaComponent(0.8)
+        static let placeholderForegroundColor: UIColor = .black.withAlphaComponent(0.8)
         static let placeholderFont: UIFont = textInputFont
         static let borderLayerLineWidth: CGFloat = 1
         static let paddingViewSize: CGFloat = 48
@@ -27,10 +27,10 @@ class SearchCityTextField: UITextField {
     }()
     
     private let searchIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(resource: .search).withTintColor(.white))
+        let imageView = UIImageView(image: UIImage(resource: .search).withTintColor(.black))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .white
+        imageView.tintColor = .black
         return imageView
     }()
     
@@ -48,11 +48,11 @@ class SearchCityTextField: UITextField {
     
     private func setupAppearance() {
         font = Constants.textInputFont
-        textColor = .white
-        tintColor = .white
+        textColor = .black
+        tintColor = .black
         layer.cornerRadius = Constants.cornerRadius
         layer.borderWidth = Constants.borderLayerLineWidth
-        layer.borderColor = UIColor.white.cgColor
+        layer.borderColor = UIColor.black.cgColor
         layer.masksToBounds = true
         attributedPlaceholder = NSAttributedString(
             string: Constants.placeholderString,
@@ -61,9 +61,7 @@ class SearchCityTextField: UITextField {
                 .font: Constants.placeholderFont
             ]
         )
-        backgroundColor = UIColor(resource: .moderateBlue)
-        
-        
+        backgroundColor = .white
     }
     
     private func setupLeftView() {

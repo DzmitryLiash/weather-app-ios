@@ -13,7 +13,7 @@ final class SearchCityCell: UITableViewCell {
         static let containerViewCornerRadius: CGFloat = 8
         static let containerViewBorderWidth: CGFloat = 1
         static let stackViewSpacing: CGFloat = 8
-        static let subtitleLabelTextColor: UIColor = .white.withAlphaComponent(0.8)
+        static let subtitleLabelTextColor: UIColor = .black.withAlphaComponent(0.8)
         static let titleLabelFont: UIFont = UIFont(name: AppFont.interBold, size: 20) ?? .boldSystemFont(ofSize: 20)
         static let subtitleLabelFont: UIFont = UIFont(name: AppFont.interRegular, size: 12) ?? .systemFont(ofSize: 12)
         static let containerViewLeading: CGFloat = 20
@@ -21,12 +21,18 @@ final class SearchCityCell: UITableViewCell {
         static let containerViewBottom: CGFloat = -16
         static let stackViewLeading: CGFloat = 16
         static let stackViewTrailing: CGFloat = -16
+        static let deleteButtonTop: CGFloat = 16
+        static let deleteButtonTrailing: CGFloat = -16
+        static let deleteButtonSize: CGFloat = 20
     }
     
     private let containerView = UIView()
     private let stackView = UIStackView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
+    private let deleteButton = UIButton(type: .system)
+
+    var onDeleteTapped: (() -> Void)? = nil
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,26 +45,28 @@ final class SearchCityCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with city: City) {
+    func setup(with city: City, isSearchHistory: Bool = false) {
         titleLabel.text = city.localizedName
         subtitleLabel.text = city.administrativeArea + ", " + city.country
+        deleteButton.isHidden = !isSearchHistory
     }
         
     private func addSubviews() {
         contentView.addSubview(containerView)
-        containerView.addSubview(stackView)
+    
+        [stackView, deleteButton].forEach(containerView.addSubview)
         
         [titleLabel, subtitleLabel].forEach(stackView.addArrangedSubview)
     }
     
     private func setupSubviews() {
         selectionStyle = .none
-        contentView.backgroundColor = UIColor(resource: .moderateBlue)
+        contentView.backgroundColor = .white
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.layer.cornerRadius = Constants.containerViewCornerRadius
         containerView.layer.borderWidth = Constants.containerViewBorderWidth
-        containerView.layer.borderColor = UIColor.white.cgColor
+        containerView.layer.borderColor = UIColor.black.cgColor
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -67,11 +75,16 @@ final class SearchCityCell: UITableViewCell {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = Constants.titleLabelFont
-        titleLabel.textColor = .white
+        titleLabel.textColor = .black
         
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.font = Constants.subtitleLabelFont
         subtitleLabel.textColor = Constants.subtitleLabelTextColor
+        
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.setImage(UIImage(resource: .close), for: .normal)
+        deleteButton.tintColor = .black
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
     private func setupConstraints() {
@@ -90,6 +103,15 @@ final class SearchCityCell: UITableViewCell {
             
             subtitleLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             subtitleLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            
+            deleteButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Constants.deleteButtonTop),
+            deleteButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: Constants.deleteButtonTrailing),
+            deleteButton.widthAnchor.constraint(equalToConstant: Constants.deleteButtonSize),
+            deleteButton.heightAnchor.constraint(equalToConstant: Constants.deleteButtonSize)
         ])
+    }
+    
+    @objc private func deleteButtonTapped() {
+        onDeleteTapped?()
     }
 }

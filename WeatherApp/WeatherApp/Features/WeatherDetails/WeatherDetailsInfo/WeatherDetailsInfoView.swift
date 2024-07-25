@@ -36,9 +36,8 @@ final class WeatherDetailsInfoView: BaseView {
     override func setupSubviews() {
         super.setupSubviews()
   
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UIColor(resource: .moderateBlue)
+        tableView.backgroundColor = .white
         tableView.register(
             WeatherDetailsInfoCell.self,
             forCellReuseIdentifier: WeatherDetailsInfoCell.reuseIdentifier

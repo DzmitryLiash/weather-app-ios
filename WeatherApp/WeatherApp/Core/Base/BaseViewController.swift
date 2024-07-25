@@ -35,9 +35,8 @@ class BaseViewController: UIViewController {
     func addSubviews() {}
     
     func setupSubviews() {
-        navigationController?.navigationBar.tintColor = .white
-
-        view.backgroundColor = UIColor(resource: .moderateBlue)
+        navigationController?.navigationBar.tintColor = .black
+        view.backgroundColor = .white
     }
     
     func setupConstraints() {}
